@@ -1,0 +1,26 @@
+version: "2"
+services:
+  redis-slave:
+    container_name: redis-slave
+    image: redis:4.0.14-alpine
+    restart: always
+    networks:
+      - redis
+    ports:
+      - "6380:6379"
+    expose:
+      - "6380"
+    volumes:
+      - ./etc/redis-master.conf:/etc/redis/redis-master.conf
+      - /app/redis/log/:/var/log/redis
+      - /app/redis/:/var/lib/redis/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
+    entrypoint: "redis-server /etc/redis/redis-master.conf"
+
+networks:
+  redis:
+    external: true

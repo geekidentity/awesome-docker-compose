@@ -1,0 +1,13 @@
+version: "3"
+services:
+  minidlna:
+    image: vladgh/minidlna
+    environment:
+      MINIDLNA_MEDIA_DIR: /media
+      MINIDLNA_FRIENDLY_NAME: MyMini
+    ports:
+      - 8200:8200
+    expose:
+      - 8200
+    volumes:
+      - /app/minidlna:/media

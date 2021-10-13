@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ddns.newfuture.cc/schema/v2.8.json",
+  "debug": true,
+  "dns": "alidns",
+  "id": "your ak",
+  "index4": "public",
+  "index6": "default",
+  "ipv4": [
+    "home.geekidentity.com"
+  ],
+  "ipv6": [
+  ],
+  "proxy": null,
+  "token": "your sk",
+  "ttl": null
+}

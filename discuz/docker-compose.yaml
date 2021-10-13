@@ -1,0 +1,18 @@
+version: "2.0"
+services:
+  discuz:
+    image: ccr.ccs.tencentyun.com/discuzq/dzq:latest
+    container_name: discuz
+    volumes:
+      - /app/discuz/data:/var/lib/discuz
+      - /app/discuz/mysqldb:/var/lib/mysqldb
+    network_mode: "bridge"
+    ports:
+      - "5400:80"
+    expose:
+      - "5400"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"

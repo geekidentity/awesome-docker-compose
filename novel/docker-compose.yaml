@@ -1,0 +1,66 @@
+version: '2'
+
+services:
+  data:
+    container_name: novel-db
+    image: mysql:5.7
+    restart: always
+    hostname: data
+    environment:
+      - MYSQL_ROOT_PASSWORD=test123456
+    volumes:
+      - "/app/novel/db/mysql:/var/lib/mysql"
+      - "./init.sql:/docker-entrypoint-initdb.d/init.sql"
+    command: mysqld --max_allowed_packet=100M
+    ports:
+      - 3306:3306
+    networks:
+      - novelnet
+
+  crawl:
+    container_name: novel-crawl
+    image: 201206030/novel-crawl:3.5.1
+    restart: always
+    environment:
+      - dburl=jdbc:mysql://data:3306/novel_plus?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+      - username=root
+      - password=test123456
+    ports:
+      - 8081:8081
+    depends_on:
+      - data
+    networks:
+      - novelnet
+
+  front:
+    container_name: novel-front
+    image: 201206030/novel-front:3.5.4
+    restart: always
+    environment:
+      - dburl=jdbc:mysql://data:3306/novel_plus?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+      - username=root
+      - password=test123456
+    ports:
+      - 8080:8080
+    depends_on:
+      - data
+    networks:
+      - novelnet
+
+  admin:
+    container_name: novel-admin
+    image: 201206030/novel-admin:3.1.0
+    restart: always
+    environment:
+      - dburl=jdbc:mysql://data:3306/novel_plus?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+      - username=root
+      - password=test123456
+    ports:
+      - 8088:80
+    depends_on:
+      - data
+    networks:
+      - novelnet
+
+networks:
+  novelnet:

@@ -1,0 +1,14 @@
+version: "3"
+services:
+  frps:
+    container_name: frps
+    image: snowdreamtech/frps
+    restart: always
+    network_mode: host
+    volumes:
+      - ./frps.ini:/etc/frp/frps.ini
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"

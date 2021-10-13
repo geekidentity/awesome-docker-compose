@@ -1,0 +1,9 @@
+version: '3'
+services:
+  smartdns:
+    image: ghostry/smartdns
+    container_name: smartdns
+    ports:
+    - 53:53
+    volumes:
+      - /app/smartdns:/smartdns

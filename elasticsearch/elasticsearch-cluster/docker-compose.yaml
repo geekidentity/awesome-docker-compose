@@ -1,0 +1,78 @@
+version: "2.0"
+services:
+  elasticsearch01:
+    image: docker.io/elasticsearch:7.6.2
+    container_name: es01
+    hostname: es01
+    environment:
+      - node.name=${HOSTNAME}
+      - cluster.name=es
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
+      - discovery.seed_hosts=es02,es03
+      - cluster.initial_master_nodes=es01,es02,es03
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /app/elasticsearch-cluster/es01/data:/usr/share/elasticsearch/data:rw
+      - /app/elasticsearch-cluster/es01/logs:/usr/share/elasticsearch/logs:rw
+      - ./plugins:/usr/share/elasticsearch/plugins:ro
+    networks:
+      - elastic
+    restart: always
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    expose:
+      - "9200"
+      - "9300"
+  elasticsearch02:
+    image: docker.io/elasticsearch:7.6.2
+    container_name: es02
+    hostname: es02
+    environment:
+      - node.name=${HOSTNAME}
+      - cluster.name=es
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
+      - discovery.seed_hosts=es01,es03
+      - cluster.initial_master_nodes=es01,es02,es03
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /app/elasticsearch-cluster/es02/data:/usr/share/elasticsearch/data:rw
+      - /app/elasticsearch-cluster/es02/logs:/usr/share/elasticsearch/logs:rw
+      - ./plugins:/usr/share/elasticsearch/plugins:ro
+    networks:
+      - elastic
+    restart: always
+  elasticsearch03:
+    image: docker.io/elasticsearch:7.6.2
+    container_name: es03
+    hostname: es03
+    environment:
+      - node.name=${HOSTNAME}
+      - cluster.name=es
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
+      - discovery.seed_hosts=es01,es02
+      - cluster.initial_master_nodes=es01,es02,es03
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /app/elasticsearch-cluster/es03/data:/usr/share/elasticsearch/data:rw
+      - /app/elasticsearch-cluster/es03/logs:/usr/share/elasticsearch/logs:rw
+      - ./plugins:/usr/share/elasticsearch/plugins:ro
+    networks:
+      - elastic
+    restart: always
+
+networks:
+  elastic:
+    driver: bridge

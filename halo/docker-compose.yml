@@ -1,0 +1,16 @@
+version: "3"
+services:
+  halo:
+    container_name: halo
+    image: halohub/halo
+    network_mode: "host"
+    restart: "always"
+    ports:
+    - 8090:8090
+    volumes:
+      - ~/.halo:/root/.halo
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"

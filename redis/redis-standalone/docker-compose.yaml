@@ -1,0 +1,20 @@
+version: "2"
+services:
+  redis:
+    container_name: redis
+    image: redis:4.0.14-alpine
+    restart: always
+    ports:
+      - "5379:6379"
+    expose:
+      - "5379"
+    volumes:
+      - ./etc/redis.conf:/etc/redis/redis.conf
+      - /app/redis/log/:/var/log/redis
+      - /app/redis/:/var/lib/redis/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
+    entrypoint: "redis-server /etc/redis/redis.conf"

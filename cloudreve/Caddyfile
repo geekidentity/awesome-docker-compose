@@ -1,0 +1,6 @@
+cloudreve.example.com {
+  tls admin@example.com
+  proxy / cloudreve:5212 {
+    transparent
+  }
+}

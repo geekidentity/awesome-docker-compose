@@ -1,0 +1,15 @@
+version: "2"
+services:
+  grafana:
+    container_name: grafana
+    image: grafana/grafana-enterprise
+    restart: always
+    volumes:
+      - /app/grafana-storage:/var/lib/grafana
+    network_mode: host
+    user: root
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"

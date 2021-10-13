@@ -1,0 +1,14 @@
+version: "2.0"
+services:
+  chartmuseum:
+    image: chartmuseum/chartmuseum:latest
+    container_name: chartmuseum
+    env_file:
+      - ./env
+    volumes:
+      - /app/charts:/charts:rw
+    network_mode: "bridge"
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"

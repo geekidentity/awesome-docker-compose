@@ -1,0 +1,15 @@
+version: "2"
+services:
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    restart: always
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    network_mode: host
+    user: root
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"

@@ -1,0 +1,14 @@
+version: "2"
+services:
+  frps:
+    container_name: ddns
+    image: newfuture/ddns
+    restart: always
+    network_mode: host
+    volumes:
+      - ./config.json:/config.json
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"

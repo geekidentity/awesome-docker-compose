@@ -1,0 +1,23 @@
+version: "2.0"
+services:
+  elasticsearch:
+    image: docker.io/elasticsearch:7.6.2
+    container_name: es
+    env_file:
+      - ./etc/env
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - /app/elasticsearch-standalone/data:/usr/share/elasticsearch/data:rw
+      - /app/elasticsearch-standalone/logs:/usr/share/elasticsearch/logs:rw
+      - ./plugins:/usr/share/elasticsearch/plugins:ro
+    network_mode: "bridge"
+    restart: always
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    expose:
+      - "9200"
+      - "9300"

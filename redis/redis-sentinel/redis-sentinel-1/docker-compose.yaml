@@ -1,0 +1,24 @@
+version: "3"
+services:
+  redis-sentinel-1:
+    container_name: redis-sentinel-1
+    image: redis:4.0.14-alpine
+    restart: always
+    networks:
+      - redis
+    ports:
+      - "26379:26379"
+    expose:
+      - "26379"
+    volumes:
+      - ./../etc/sentinel.conf:/etc/redis/sentinel.conf
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
+    entrypoint: "redis-sentinel /etc/redis/sentinel.conf"
+
+networks:
+  redis:
+    external: true
