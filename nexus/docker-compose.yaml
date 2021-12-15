@@ -1,0 +1,16 @@
+version: "2.2"
+services:
+  nexus3:
+    container_name: nexus3
+    image: sonatype/nexus3
+    volumes:
+      - /app/nexus-data:/nexus-data
+    ports:
+      - "8081:8081"
+    expose:
+      - "80"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "2"
