@@ -1,6 +1,6 @@
 version: "2"
 services:
-  frps:
+  ddns:
     container_name: ddns
     image: newfuture/ddns
     restart: always
