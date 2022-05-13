@@ -5,7 +5,6 @@ services:
     image: whyour/qinglong:latest
     volumes:
       - ./data:/ql/data
-    network_mode: host
     ports:
       - "0.0.0.0:5700:5700"
     restart: unless-stopped
