@@ -1,0 +1,9 @@
+version: '3'
+services:
+  tensorflow2:
+    image: tensorflow/tensorflow:2.9.0-jupyter
+    container_name: tf2
+    ports:
+    - "8888:8888"
+    volumes:
+      - /share/app/tensorflow/tf1/notebooks:/tf/notebooks
