@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission
+    container_name: transmission
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /share/Temp/transmission/config:/config:rw
+      - /share/Temp/transmission:/downloads:rw
+      - /share/Temp/transmission/watch:/watch:rw
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped
