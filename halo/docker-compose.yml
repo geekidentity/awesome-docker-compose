@@ -2,13 +2,12 @@ version: "3"
 services:
   halo:
     container_name: halo
-    image: halohub/halo
-    network_mode: "host"
+    image: halohub/halo:1.5.3
     restart: "always"
     ports:
-    - 8090:8090
+    - "8090:8090"
     volumes:
-      - ~/.halo:/root/.halo
+      - /app/halo:/root/.halo
     logging:
       driver: "json-file"
       options:
