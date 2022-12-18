@@ -1,0 +1,8 @@
+version: "3"
+services:
+  ssmgr:
+    container_name: ssmgr
+    image: gyteng/ssmgr:latest
+    network_mode: host
+    volumes:
+        - ./ssmgr:/root/.ssmgr
