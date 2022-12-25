@@ -1,13 +1,28 @@
-version: "3"
+version: '3'
 services:
   jellyfin:
-    image: jellyfin/jellyfin
-    user: 1000:1000
-    network_mode: "host"
-    restart: "unless-stopped"
+    image: nyanmisaka/jellyfin
+    container_name: jellyfin
     ports:
-    - 8096:8096
+      - "8096:8096"
     volumes:
-      - /app/jellyfin/config:/config
-      - /app/jellyfin/cache:/cache
-      - /app/jellyfin/media:/media
+      - /share/app/jellyfin/config:/config
+      - /share/app/jellyfin/cache:/cache
+      - /share:/media
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+    restart: 'unless-stopped'
+    # Optional - alternative address used for autodiscovery
+    environment:
+      - JELLYFIN_PublishedServerUrl=http://example.com
+    extra_hosts:
+      - "api.themoviedb.org:52.84.174.76"
+      - "api.themoviedb.org:52.84.174.56"
+      - "api.themoviedb.org:52.84.174.36"
+      - "api.themoviedb.org:52.84.174.115"
+      - "image.themoviedb.org:104.16.61.155"
+      - "www.themoviedb.org:52.222.174.88"
+      - "www.themoviedb.org:52.222.174.47"
+      - "www.themoviedb.org:52.222.174.82"
+      - "www.themoviedb.org:52.222.174.76"
+      - "api.thetvdb.com:18.155.126.111"
