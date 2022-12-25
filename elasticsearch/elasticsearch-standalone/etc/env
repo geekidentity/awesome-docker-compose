@@ -1,5 +1,0 @@
-node.name=${HOSTNAME}
-cluster.name=es
-bootstrap.memory_lock=true
-"ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
-cluster.initial_master_nodes=${HOSTNAME}

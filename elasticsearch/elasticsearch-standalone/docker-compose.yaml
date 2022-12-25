@@ -3,8 +3,13 @@ services:
   elasticsearch:
     image: docker.io/elasticsearch:7.6.2
     container_name: es
-    env_file:
-      - ./etc/env
+    environment:
+      - node.name=${HOSTNAME}
+      - cluster.name=es
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
+      - discovery.type=single-node #集群模式去掉
+      - TAKE_FILE_OWNERSHIP=true # 如果不加会报 Error opening log file ‘logs/gc.log’: Permission denied
     ulimits:
       memlock:
         soft: -1

@@ -12,26 +12,9 @@
 
 执行 init.sh 脚本初始化系统环境
 
-## 修改 ES 配置
-
-配置 更改elasticsearch.yml 中的配置信息
-network.host={当前服务器ip}
-discovery.zen.ping.unicast.hosts={es集群的每个服务器，英文“,”隔开}
-
-## 修改 JVM 配置
-
-在 etc/config/jvm.options 中修改 
--Xms
--Xmx
-如果没有啥特殊想法，可以设置为系统内存一半。
-
-## 修改环境变量
-
-如果需要添加环境变量，在 /etc/elasticsearch/env 里添加
-
 ## 添加插件
 
-如果需要其他插件，将文件夹 copy 到 ./plugins/  下
+如果需要其他插件，将文件夹 copy 到 /app/elasticsearch/plugins/  下
 
 ## 修改数据文件目录
 
