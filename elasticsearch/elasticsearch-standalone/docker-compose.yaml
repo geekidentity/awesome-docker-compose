@@ -17,7 +17,7 @@ services:
     volumes:
       - /app/elasticsearch-standalone/data:/usr/share/elasticsearch/data:rw
       - /app/elasticsearch-standalone/logs:/usr/share/elasticsearch/logs:rw
-      - ./plugins:/usr/share/elasticsearch/plugins:ro
+      - /app/elasticsearch-standalone/plugins:/usr/share/elasticsearch/plugins:ro
     network_mode: "bridge"
     restart: always
     ports:
