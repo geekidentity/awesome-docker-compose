@@ -5,16 +5,16 @@ services:
     container_name: gitlab
     image: 'gitlab/gitlab-ce:latest'
     restart: "no"
-    hostname: 'nas.geekidentity.com'
+    hostname: 'gitlab.xxlab.tech'
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://nas.geekidentity.com:8929'
+        external_url 'http://gitlab.xxlab.tech'
         gitlab_rails['gitlab_shell_ssh_port'] = 2224
     ports:
       - '8929:8929'
       - '2224:2224'
     volumes:
-      - '/share/app/gitlab/config:/etc/gitlab'
-      - '/share/app/gitlab/logs:/var/log/gitlab'
-      - '/share/app/gitlab/data:/var/opt/gitlab'
+      - '/app/gitlab/config:/etc/gitlab'
+      - '/app/gitlab/logs:/var/log/gitlab'
+      - '/app/gitlab/data:/var/opt/gitlab'
     shm_size: '256m'
