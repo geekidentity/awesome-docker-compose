@@ -15,7 +15,7 @@ services:
       - /app/mysql/my.cnf:/etc/my.cnf
       - /app/mysql/data:/var/lib/mysql
       - /app/mysql/log:/var/log/mysql
-      - ./initdb.d:/docker-entrypoint-initdb.d
+      - /app/mysql/initdb.d:/docker-entrypoint-initdb.d
     restart: always
     logging:
       driver: "json-file"
