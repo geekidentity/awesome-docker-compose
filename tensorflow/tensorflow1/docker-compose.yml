@@ -1,9 +1,16 @@
-version: '3'
+version: '3.7'
 services:
   tensorflow1:
-    image: tensorflow/tensorflow:1.15.5-jupyter
+    image: tensorflow/tensorflow:1.15.5-gpu-py3-jupyter
     container_name: tf1
     ports:
     - "8888:8888"
     volumes:
-      - /share/app/tensorflow/tf1/notebooks:/tf/notebooks
+      - /app/tensorflow/tf1/notebooks:/tf/notebooks
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: "all"
+              capabilities: [gpu]
