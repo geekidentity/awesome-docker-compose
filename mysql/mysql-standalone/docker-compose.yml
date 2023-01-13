@@ -3,8 +3,7 @@ services:
   mysql:
     image: mysql/mysql-server:5.7
     container_name: mysql
-    ports:
-      - 3306:3306
+    network_mode: host
     environment:
       - MYSQL_DATABASE=${DB_DATABASE}
       - MYSQL_USER=${DB_USER}
@@ -12,7 +11,7 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
       - TZ=${TIMEZONE}
     volumes:
-      - /app/mysql/my.cnf:/etc/my.cnf
+      - ./etc/conf.d/my.cnf:/etc/my.cnf
       - /app/mysql/data:/var/lib/mysql
       - /app/mysql/log:/var/log/mysql
       - /app/mysql/initdb.d:/docker-entrypoint-initdb.d
