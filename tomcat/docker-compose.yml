@@ -1,0 +1,13 @@
+version: '2'
+services:
+  tomcat:
+    container_name: tomcat
+    image: tomcat:8-jdk8
+    network_mode: bridge
+    ports:
+      - "8080:8080"
+    restart: always
+
+networks:
+  nas:
+    driver: bridge
