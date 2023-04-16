@@ -1,0 +1,13 @@
+version: "2"
+services:
+  ddns:
+    container_name: davinci
+    image: edp963/davinci:0.3.0-rc
+    restart: always
+    volumes:
+      - ./config.json:/config.json
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "10"
