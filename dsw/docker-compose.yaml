@@ -1,0 +1,12 @@
+version: "3"
+services:
+  dsw:
+    image: registry.cn-beijing.aliyuncs.com/xxlab/dsw:0.0.1
+    container_name: dsw
+    restart: always
+    network_mode: host
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
