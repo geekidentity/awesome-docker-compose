@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  app:
+    container_name: chatgpt-web
+    image: registry.cn-beijing.aliyuncs.com/xxlab/chatgpt-web:chat4
+    network_mode: host
+    environment:
+      PORT: 80
+      OPENAI_API_KEY:
+      OPENAI_API_MODEL: gpt-3.5-turbo
