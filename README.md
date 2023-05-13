@@ -1,4 +1,4 @@
-# docker-compose 示例
+# docker compose 示例
 
 Awesome Docker Compose samples
 

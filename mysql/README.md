@@ -11,4 +11,4 @@ chmod 777 -R /app/mysql
 ```
 
 参考：
-1. https://github.com/treetips/docker-compose-all-mysql
+1. https://github.com/treetips/docker compose-all-mysql

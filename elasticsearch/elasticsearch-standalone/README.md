@@ -18,7 +18,7 @@
 
 ## 修改数据文件目录
 
-ES 需要2个数据文件目录，需要在 docker-compose-yaml 里修改
+ES 需要2个数据文件目录，需要在 docker compose-yaml 里修改
 1. 索引数据 默认在  /app/elasticsearch/data
 1. 日志文件 默认在  /app/elasticsearch/logs
 

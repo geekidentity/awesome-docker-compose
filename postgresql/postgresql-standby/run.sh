@@ -20,22 +20,22 @@ SERVICE=$2
 
 case $1 in
 start)
-    docker-compose up -d $SERVICE
+    docker compose up -d $SERVICE
     ;;
 stop)
-    docker-compose stop $SERVICE
+    docker compose stop $SERVICE
     ;;
 down)
-    docker-compose down
+    docker compose down
     ;;
 restart)
-    docker-compose restart $SERVICE
+    docker compose restart $SERVICE
     ;;
 front)
-    docker-compose up $SERVICE
+    docker compose up $SERVICE
     ;;
 status)
-    docker-compose ps $SERVICE
+    docker compose ps $SERVICE
     ;;
 enter)
     if [ -z $SERVICE ]; then
