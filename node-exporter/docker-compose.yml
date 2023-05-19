@@ -1,8 +1,8 @@
 version: '3'
 services:
-  node_exporter:
+  node-exporter:
     image: quay.io/prometheus/node-exporter:latest
-    container_name: node_exporter
+    container_name: node-exporter
     command:
       - '--path.rootfs=/host'
     network_mode: host
