@@ -1,6 +1,6 @@
 version: "2"
 services:
-  frps:
+  frpc:
     container_name: frpc
     image: snowdreamtech/frpc
     restart: always
