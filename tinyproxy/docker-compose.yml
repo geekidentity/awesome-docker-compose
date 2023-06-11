@@ -4,7 +4,7 @@ services:
     container_name: tinyproxy
     image: vimagick/tinyproxy:latest
     ports:
-      - 8888:8888
+      - 10086:8888
     volumes:
       - /app/tinyproxy/log:/var/log/tinyproxy
       - ./tinyproxy.conf:/etc/tinyproxy/tinyproxy.conf
