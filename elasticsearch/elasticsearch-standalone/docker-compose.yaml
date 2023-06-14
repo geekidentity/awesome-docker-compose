@@ -1,28 +1,24 @@
 version: "2.0"
 services:
   elasticsearch:
-    image: docker.io/elasticsearch:7.6.2
+    image: elasticsearch:8.8.0
     container_name: es
     environment:
-      - node.name=${HOSTNAME}
+      #      - node.name=es
       - cluster.name=es
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms2048m -Xmx2048m"
+      - ELASTIC_PASSWORD=Aa123456
+      - "ES_JAVA_OPTS=-Xms4096m -Xmx4096m"
       - discovery.type=single-node #集群模式去掉
       - TAKE_FILE_OWNERSHIP=true # 如果不加会报 Error opening log file ‘logs/gc.log’: Permission denied
+      - xpack.security.http.ssl.enabled=false
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
-      - /app/elasticsearch-standalone/data:/usr/share/elasticsearch/data:rw
-      - /app/elasticsearch-standalone/logs:/usr/share/elasticsearch/logs:rw
-      - /app/elasticsearch-standalone/plugins:/usr/share/elasticsearch/plugins:ro
-    network_mode: "bridge"
+      - /app/elasticsearch/data:/usr/share/elasticsearch/data:rw
+      - /app/elasticsearch/logs:/usr/share/elasticsearch/logs:rw
+      - /app/elasticsearch/plugins:/usr/share/elasticsearch/plugins:ro
+    network_mode: "host"
     restart: always
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-    expose:
-      - "9200"
-      - "9300"
