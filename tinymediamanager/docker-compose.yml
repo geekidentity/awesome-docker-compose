@@ -1,0 +1,13 @@
+version: '3'
+services:
+  tinymediamanager:
+    container_name: tinymediamanager
+    image: tinymediamanager/tinymediamanager:4.3.13
+    ports:
+      - 4000:4000
+    volumes:
+      - /app/tinymediamanager:/data
+      - /mnt:/media/
+    environment:
+      - PASSWORD=
+    restart: always
