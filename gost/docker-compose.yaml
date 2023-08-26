@@ -1,0 +1,15 @@
+version: "2"
+services:
+  gost:
+    container_name: gost
+    image: ginuerzh/gost
+    restart: always
+    volumes:
+      - ./index.html:/var/www/html/
+    network_mode: host
+    command: "-L http://${USER}:${PASS}@${BIND_IP}:${PORT}?probe_resist=file:/var/www/html/index.html"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+        max-file: "10"
